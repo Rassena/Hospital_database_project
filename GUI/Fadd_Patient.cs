@@ -14,7 +14,6 @@ namespace GUI
 
         Cluster cluster;
         ISession session;
-        RowSet patients;
 
         public Fadd_Patient()
         {
@@ -23,13 +22,6 @@ namespace GUI
                 .Build();
             session = cluster.Connect("test_keyspace");
 
-            session.UserDefinedTypes.Define(
-               UdtMap.For<Shot>()
-                  .Map(a => a.date, "date")
-                  .Map(a => a.name, "name")
-                  .Map(a => a.obligatory, "obligatory")
-                  .Map(a => a.done, "done")
-            );
             InitializeComponent();
         }
 

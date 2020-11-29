@@ -1,0 +1,39 @@
+    
+
+CREATE KEYSPACE test_keyspace WITH replication = {'class': 'SimpleStrategy', 'replication_factor': '1'}  AND durable_writes = true;
+
+USE test_keyspace;
+
+
+    CREATE TYPE Shot (
+            date date,
+            name text,
+            obligatory boolean,
+            done boolean
+        );
+
+
+         CREATE TABLE test_patient (
+            pesel bigint PRIMARY KEY,
+            first_name text,
+            last_name text,
+            gender text,
+            shots list<FROZEN<Shot>>
+        );
+
+         CREATE TABLE test_user (
+            Login text PRIMARY KEY,
+            password text,
+            type text,
+            patients list<bigint>
+        );
+
+         CREATE TABLE test_shot (
+            name text PRIMARY KEY,
+            illness text,
+            obligatory boolean,
+            available boolean
+        );
+
+
+

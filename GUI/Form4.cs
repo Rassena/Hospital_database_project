@@ -234,7 +234,8 @@ namespace GUI
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            var fAdd_User = new FAdd_User();
+            fAdd_User.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -271,6 +272,12 @@ namespace GUI
         private void button7_Click(object sender, EventArgs e)
         {
             del_patient_to_user();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var fadd_Shot = new FAdd_Shot();
+            fadd_Shot.Show();
         }
     }
 }

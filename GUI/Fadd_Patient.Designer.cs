@@ -74,7 +74,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(23, 83);
+            this.label2.Location = new System.Drawing.Point(18, 78);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(60, 15);
             this.label2.TabIndex = 3;
@@ -144,7 +144,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(23, 223);
+            this.label5.Location = new System.Drawing.Point(1, 228);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(0, 15);
             this.label5.TabIndex = 11;
@@ -167,7 +167,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Name = "Fadd_Patient";
-            this.Text = "Fadd_Patient";
+            this.Text = "Dodaj pecjenta";
             this.ResumeLayout(false);
             this.PerformLayout();
 
