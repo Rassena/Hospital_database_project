@@ -13,12 +13,10 @@ namespace GUI
     {
         Cluster cluster;
         ISession session;
-        public FAdd_Shot()
+        public FAdd_Shot(ISession session)
         {
-            cluster = Cluster.Builder()
-                .AddContactPoint("127.0.0.1")
-                .Build();
-            session = cluster.Connect("test_keyspace");
+
+            this.session = session;
 
             InitializeComponent();
         }

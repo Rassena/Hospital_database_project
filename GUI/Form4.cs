@@ -20,22 +20,11 @@ namespace GUI
 
 
 
-        public Form4(string login)
+        public Form4(string login, ISession session)
         {
             this.Text = " Admin: " + login;
 
-            cluster = Cluster.Builder()
-                .AddContactPoint("127.0.0.1")
-                .Build();
-            session = cluster.Connect("test_keyspace");
-
-            session.UserDefinedTypes.Define(
-               UdtMap.For<Shot>()
-                  .Map(a => a.date, "date")
-                  .Map(a => a.name, "name")
-                  .Map(a => a.obligatory, "obligatory")
-                  .Map(a => a.done, "done")
-            );
+            this.session = session;
 
             InitializeComponent();
             refresh();
@@ -234,20 +223,20 @@ namespace GUI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var fAdd_User = new FAdd_User();
+            var fAdd_User = new FAdd_User(session);
             fAdd_User.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var fadd_Patient = new Fadd_Patient();
+            var fadd_Patient = new Fadd_Patient(session);
             fadd_Patient.Show();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var form1 = new Form1();
+            var form1 = new Form1(session);
             form1.Show();
         }
 
@@ -276,7 +265,7 @@ namespace GUI
 
         private void button3_Click(object sender, EventArgs e)
         {
-            var fadd_Shot = new FAdd_Shot();
+            var fadd_Shot = new FAdd_Shot(session);
             fadd_Shot.Show();
         }
     }

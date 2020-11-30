@@ -18,22 +18,12 @@ namespace GUI
         Row user;
         Row patient;
 
-        public Form3(string login)
+        public Form3(string login, ISession session)
         {
             this.Text = login + " Doktor";
 
-            cluster = Cluster.Builder()
-                .AddContactPoint("127.0.0.1")
-                .Build();
-            session = cluster.Connect("test_keyspace");
+            this.session = session;
 
-            session.UserDefinedTypes.Define(
-               UdtMap.For<Shot>()
-                  .Map(a => a.date, "date")
-                  .Map(a => a.name, "name")
-                  .Map(a => a.obligatory, "obligatory")
-                  .Map(a => a.done, "done")
-            );
 
             results = session.Execute("SELECT * FROM test_patient;");
             list_shots = session.Execute("SELECT * FROM test_shot;");
@@ -163,7 +153,7 @@ namespace GUI
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var form1 = new Form1();
+            var form1 = new Form1(session);
             form1.Show();
         }
 

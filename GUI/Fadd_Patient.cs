@@ -15,12 +15,9 @@ namespace GUI
         Cluster cluster;
         ISession session;
 
-        public Fadd_Patient()
+        public Fadd_Patient(ISession session)
         {
-            cluster = Cluster.Builder()
-                .AddContactPoint("127.0.0.1")
-                .Build();
-            session = cluster.Connect("test_keyspace");
+            this.session = session;
 
             InitializeComponent();
         }

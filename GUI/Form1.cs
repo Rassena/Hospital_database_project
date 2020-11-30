@@ -10,24 +10,14 @@ namespace GUI
     public partial class Form1 : Form
     {
 
-        Cluster cluster;
         ISession session;
         RowSet results;
 
-        public Form1()
+        public Form1(ISession session)
         {
-            cluster = Cluster.Builder()
-                .AddContactPoint("127.0.0.1")
-                .Build();
-            session = cluster.Connect("test_keyspace");
 
-            session.UserDefinedTypes.Define(
-               UdtMap.For<Shot>()
-                  .Map(a => a.date, "date")
-                  .Map(a => a.name, "name")
-                  .Map(a => a.obligatory, "obligatory")
-                  .Map(a => a.done, "done")
-            );
+            this.session = session;
+
             InitializeComponent();
             listBox1.Items.Add($"data wykonania \t Nazwa szczepionki");
         }
@@ -103,17 +93,17 @@ namespace GUI
                         switch (user.GetValue<string>("type")){
                             case "doctor":
                                 this.Hide();
-                                var form3 = new Form3(login);
+                                var form3 = new Form3(login,session);
                                 form3.Show();
                                 break;
                             case "nurse":
                                 this.Hide();
-                                var form2 = new Form2(login);
+                                var form2 = new Form2(login,session);
                                 form2.Show();
                                 break;
                             case "admin":
                                 this.Hide();
-                                var form4 = new Form4(login);
+                                var form4 = new Form4(login,session);
                                 form4.Show();
                                 break;
                         }
