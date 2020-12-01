@@ -86,7 +86,7 @@ namespace GUI
 
                                 foreach (Shot shot in shots)
                                 {
-                                    string ob = "Nie Obowiązkowe";
+                                    string ob = "Nieobowiązkowe";
                                     if (shot.obligatory)
                                     {
                                         ob = "Obowiązkowe";

@@ -40,7 +40,7 @@ namespace GUI
             InitializeComponent();
 
 
-
+            comboBox3Refresh();
             comboBox1Refresh();
             comboBox2Refresh();
             listBox1Refresh();
@@ -82,15 +82,17 @@ namespace GUI
         {
             comboBox2.Items.Clear();
             comboBox2.Items.Add("Wybierz szcepionkę");
+            list_shots = session.Execute("SELECT * FROM test_shot;");
 
             if (list_shots != null)
             {
                 foreach (var shot in list_shots)
                 {
-                    if (shot.GetValue<Boolean>("obligatory"))
-                        comboBox2.Items.Add($"{shot.GetValue<string>("name")} {shot.GetValue<string>("illness")} Obowiązkowe");
-                    else
-                        comboBox2.Items.Add($"{shot.GetValue<string>("name")} {shot.GetValue<string>("illness")} Nie bowiązkowe");
+                    if(shot.GetValue<string>("illness") == comboBox3.SelectedItem.ToString()||comboBox3.SelectedIndex==1)
+                        if (shot.GetValue<Boolean>("obligatory"))
+                            comboBox2.Items.Add($"{shot.GetValue<string>("name")} {shot.GetValue<string>("illness")} Obowiązkowe");
+                        else
+                            comboBox2.Items.Add($"{shot.GetValue<string>("name")} {shot.GetValue<string>("illness")} Niebowiązkowe");
 
                 }
             }
@@ -98,9 +100,34 @@ namespace GUI
         }
 
 
+        private void comboBox3Refresh()
+        {
+            comboBox3.Items.Clear();
+            comboBox3.Items.Add("Wybierz chorobę");
+            comboBox3.Items.Add("Wszystkie");
+
+            list_shots = session.Execute("SELECT * FROM test_shot;");
+
+            if (list_shots != null)
+            {
+                foreach (var shot in list_shots)
+                {
+                    if (!comboBox3.Items.Contains(shot.GetValue<string>("illness")))
+                        comboBox3.Items.Add($"{shot.GetValue<string>("illness")}");
+                }
+            }
+            comboBox3.SelectedIndex = 0;
+        }
+
+
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             listBox1Refresh();
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comboBox2Refresh();
         }
 
         private void listBox1Refresh()
@@ -205,6 +232,11 @@ namespace GUI
         private void listView2_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            comboBox2Refresh();
         }
     }
 }
