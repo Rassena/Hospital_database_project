@@ -1,5 +1,9 @@
     
 
+   ##################################################################
+   Polecenia wykonane w cqlsh przed uruchmieniem aplikacji
+   #################################################################
+
 CREATE KEYSPACE test_keyspace WITH replication = {'class': 'SimpleStrategy', 'replication_factor': '1'}  AND durable_writes = true;
 
 USE test_keyspace;
@@ -38,3 +42,5 @@ USE test_keyspace;
 
 
         INSERT INTO test_user (Login, password, type) VALUES ('admin1', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', 'admin');
+        INSERT INTO test_user (Login, password, type) VALUES ('Ivan5', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', 'doctor');
+        INSERT INTO test_user (Login, password, type) VALUES ('ela123', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', 'nurse');

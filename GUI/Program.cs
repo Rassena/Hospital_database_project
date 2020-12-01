@@ -19,7 +19,7 @@ namespace GUI
         {
 
             Cluster cluster = Cluster.Builder()
-                .AddContactPoint("25.32.195.90")
+                .AddContactPoint("192.168.100.99")
                 .Build();
             ISession session = cluster.Connect("test_keyspace");
             session.UserDefinedTypes.Define(
