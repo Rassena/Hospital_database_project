@@ -1,10 +1,5 @@
 ﻿using Cassandra;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace GUI
@@ -12,92 +7,38 @@ namespace GUI
     public partial class Fadd_Patient : Form
     {
 
-        Cluster cluster;
-        ISession session;
+        Utils util;
 
         public Fadd_Patient(ISession session)
         {
-            this.session = session;
-
+            util = new Utils();
             InitializeComponent();
         }
 
 
         private string check_first_name()
         {
-            string ret = null;
-            if(textBox1.Text!=null&textBox1.Text!=" ")
-            {
-                if(textBox1.Text.Split(" ").Length == 1)
-                {
-                    ret = textBox1.Text;
-                }
-            }
-            return ret;
+            return util.fadd_Patient_check_first_name(textBox1);
         }
 
         private string check_last_name()
         {
-            string ret = null;
-            if (textBox2.Text != null & textBox1.Text != " ")
-            {
-                if (textBox2.Text.Split(" ").Length == 1)
-                {
-                    ret = textBox2.Text;
-                }
-            }
-            return ret;
+            return util.fadd_Patient_check_last_name(textBox1, textBox2);
         }
 
         private long check_pesel()
         {
-            long ret = 0;
-            bool correct = false;
-            if (textBox1.Text != null & textBox1.Text != " ")
-            {
-                if (textBox1.Text.Split(" ").Length == 1)
-                {
-                    if (textBox3.Text.Length == 11)
-                    {
-                        if(long.TryParse(textBox3.Text,out ret))
-                        {
-                            correct = true;
-                        }
-                    }
-                }
-            }
-            if (correct)
-               return ret;
-            else
-                return 0;
+            return util.fadd_Patient_check_pesel(textBox1, textBox3);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string first_name = check_first_name();
-            string last_name = check_last_name();
-            long pesel =check_pesel();
-            string gender = "M";
-
-            if (radioButton2.Checked)
-                gender = "K";
-
-            if (first_name != null & last_name != null & pesel > 0)
-            {
-                string command = $"INSERT INTO test_patient (pesel, first_name, last_name, gender) VALUES ({pesel}, '{first_name}', '{last_name}', '{gender}');";
-                session.Execute(command);
-                this.Hide();
-            }
-            else
-            {
-                label5.Text = "Co najmniej jedna wartość jest błędna!";
-            }
-
+            util.fadd_Patient_button1_Click(this, textBox1, textBox2, textBox3, radioButton2, label5);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            util.fadd_Patient_button2_Click(this);
         }
     }
 }

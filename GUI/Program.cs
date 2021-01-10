@@ -1,11 +1,7 @@
 using System;
-using System.Collections;
-using Cassandra;
+
 using System.Windows.Forms;
-using System.Diagnostics;
-using System.Security.Cryptography;
-using System.Text;
-using System.Linq;
+
 
 namespace GUI
 {
@@ -14,10 +10,12 @@ namespace GUI
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
+        /// 
+
         [STAThread]
         static void Main()
         {
-
+/*
             Cluster cluster = Cluster.Builder()
                 .AddContactPoint("192.168.100.99")
                 .Build();
@@ -29,11 +27,13 @@ namespace GUI
                       .Map(a => a.obligatory, "obligatory")
                       .Map(a => a.done, "done")
                 );
+*/
 
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1(session));
+            Application.Run(new Form1());
+
         }
     }
 }

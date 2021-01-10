@@ -1,78 +1,37 @@
 ﻿using Cassandra;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace GUI
 {
     public partial class FAdd_Shot : Form
     {
-        Cluster cluster;
-        ISession session;
+        Utils util;
         public FAdd_Shot(ISession session)
         {
 
-            this.session = session;
+            util = new Utils();
 
             InitializeComponent();
         }
 
         private string check_name()
         {
-            string ret = "";
-            if (textBox1.Text != null & textBox1.Text != " ")
-            {
-                if (textBox1.Text.Split(" ").Length == 1)
-                {
-                    ret = textBox1.Text;
-                }
-            }
-            return ret;
+            return util.fadd_Shot_check_name(textBox1);
         }
 
         private string check_illness()
         {
-            string ret = "";
-            if (textBox2.Text != null & textBox1.Text != " ")
-            {
-                if (textBox2.Text.Split(" ").Length == 1)
-                {
-                    ret = textBox2.Text;
-                }
-            }
-            return ret;
+            return util.fadd_Shot_check_illness(textBox1, textBox2);
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Close();
+            util.fadd_Shot_button2_Click(this);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string name = check_name();
-            string illness = check_illness();
-            bool obligatory = false;
-            bool available = false;
-
-            if (radioButton1.Checked)
-                available = true;
-            if (radioButton3.Checked)
-                obligatory = true;
-
-            if (name != "" & illness != "")
-            {
-                string command = $"INSERT INTO test_shot (name, illness, available, obligatory) VALUES ('{name}', '{illness}', {available}, {obligatory});";
-                session.Execute(command);
-                this.Hide();
-            }
-            else
-            {
-                label5.Text = "Co najmniej jedna wartość jest błędna!";
-            }
+            util.fadd_Shot_button1_Click(this, textBox1, textBox2, radioButton1, radioButton3, label5);
         }
     }
 }
