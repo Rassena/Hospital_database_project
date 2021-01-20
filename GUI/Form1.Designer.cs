@@ -63,7 +63,6 @@
             this.loginTB.Size = new System.Drawing.Size(146, 23);
             this.loginTB.TabIndex = 2;
             this.loginTB.Text = "Login";
-            this.loginTB.TextChanged += new System.EventHandler(this.loginTB_TextChanged);
             // 
             // passwordTB
             // 
@@ -92,7 +91,6 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(409, 469);
             this.listBox1.TabIndex = 6;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // button1
             // 
@@ -129,7 +127,6 @@
             this.Controls.Add(this.loginL);
             this.Name = "Form1";
             this.Text = "Szpital Baza Danych";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
