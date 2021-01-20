@@ -87,7 +87,7 @@ namespace GUI
             session.UserDefinedTypes.Define(
                 UdtMap.For<Refund>()
                       .Map(a => a.id, "id")
-                      .Map(a => a.type, "typ_refundacji ")
+                      .Map(a => a.type_r, "typ_refundacji ")
                 );
 
             //Zamieniæ to na mysql -- bardzo analogicznie
