@@ -2,12 +2,12 @@
 {
     class Vaccination
     {
-        public object id { get;  set; }
-        public object name { get;  set; }
-        public object pesel_p { get;  set; }
-        public object pesel_n { get;  set; }
-        public object pesel_d { get;  set; }
-        public object date { get;  set; }
-        public object obligatory { get;  set; }
+        public long id { get;  set; }
+        public string name { get;  set; }
+        public long pesel_p { get;  set; }
+        public long pesel_n { get;  set; }
+        public long pesel_d { get;  set; }
+        public string date { get;  set; }
+        public bool obligatory { get;  set; }
     }
 }

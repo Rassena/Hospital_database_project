@@ -2,7 +2,7 @@
 {
     class Refund
     {
-        public object id { get; internal set; }
-        public object type_r { get; internal set; }
+        public long id { get; internal set; }
+        public string type_r { get; internal set; }
     }
 }

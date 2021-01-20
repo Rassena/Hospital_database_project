@@ -2,7 +2,7 @@
 {
     class High_risk
     {
-        public object id { get; internal set; }
-        public object pesel_p { get; internal set; }
+        public long id { get; internal set; }
+        public long pesel_p { get; internal set; }
     }
 }
