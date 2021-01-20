@@ -28,42 +28,68 @@ namespace GUI
 
             session.UserDefinedTypes.Define(
                 UdtMap.For<Shot>()
+                      .Map(a => a.id, "Chorobaid")
+                      .Map(a => a.name, "nazwa")
+                      .Map(a => a.accessible, "dostêpna")
+                      .Map(a => a.refund, "refundacjaid")
+                );
+
+            session.UserDefinedTypes.Define(
+                UdtMap.For<Vaccination>()
                       .Map(a => a.id, "id")
-                      .Map(a => a.name, "name")
-                      .Map(a => a.accessible, "accessible")
-                      .Map(a => a.refund, "refund")
+                      .Map(a => a.name, "Szczepionkanazwa")
+                      .Map(a => a.pesel_p, "PacjientPesel")
+                      .Map(a => a.pesel_n, "Pielêgniarkapesel")
+                      .Map(a => a.pesel_d, "Doktorpesel")
+                      .Map(a => a.date, "data_wykonania")
+                      .Map(a => a.obligatory, "obowi¹zkowowe")
+                );
+
+            session.UserDefinedTypes.Define(
+                UdtMap.For<High_risk>()
+                      .Map(a => a.id, "Chorobaid")
+                      .Map(a => a.pesel_p, "PacjientPesel")
                 );
 
             session.UserDefinedTypes.Define(
                 UdtMap.For<Patient>()
-                      .Map(a => a.pesel, "pesel")
-                      .Map(a => a.first_name, "first_name")
-                      .Map(a => a.last_name, "last_name")
+                      .Map(a => a.pesel, "Pesel")
+                      .Map(a => a.first_name, "imie")
+                      .Map(a => a.last_name, "nazwisko")
+                      .Map(a => a.login, "login")
+                      .Map(a => a.password, "haslo")
                 );
 
             session.UserDefinedTypes.Define(
                 UdtMap.For<Nurse>()
                       .Map(a => a.pesel, "pesel")
-                      .Map(a => a.first_name, "first_name")
-                      .Map(a => a.last_name, "last_name")
+                      .Map(a => a.first_name, "imie")
+                      .Map(a => a.last_name, "nazwisko")
                       .Map(a => a.login, "login")
-                      .Map(a => a.password, "password")
+                      .Map(a => a.password, "haslo")
                 );
 
             session.UserDefinedTypes.Define(
                 UdtMap.For<Doctor>()
                       .Map(a => a.pesel, "pesel")
-                      .Map(a => a.first_name, "first_name")
-                      .Map(a => a.last_name, "last_name")
+                      .Map(a => a.first_name, "imie")
+                      .Map(a => a.last_name, "nazwisko")
                       .Map(a => a.login, "login")
-                      .Map(a => a.password, "password")
+                      .Map(a => a.password, "haslo")
                 );
 
             session.UserDefinedTypes.Define(
                 UdtMap.For<Ilness>()
                       .Map(a => a.id, "id")
-                      .Map(a => a.name, "name")
+                      .Map(a => a.name, "nazwa")
                 );
+
+            session.UserDefinedTypes.Define(
+                UdtMap.For<Refund>()
+                      .Map(a => a.id, "id")
+                      .Map(a => a.type, "typ_refundacji ")
+                );
+
             //Zamieniæ to na mysql -- bardzo analogicznie
 
 
